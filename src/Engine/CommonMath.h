@@ -2,6 +2,8 @@
 
 #include <cmath>
 
-inline double PI() {
-	return atan(1) * 4;
+#include "Constants.h"
+
+inline CFloat PI() {
+	return static_cast<CFloat>(atan(1) * 4);
 }

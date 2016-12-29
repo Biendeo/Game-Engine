@@ -15,12 +15,12 @@ namespace Biendeo::GameOff2016::Engine::Components {
 		glm::vec3& Scale();
 
 		void Awake() override;
-		void LateUpdate(float deltaTime) override;
+		void LateUpdate(CFloat deltaTime) override;
 		void OnActive() override;
 		void OnDestroy() override;
 		void OnDisable() override;
 		void Start() override;
-		void Update(float deltaTime) override;
+		void Update(CFloat deltaTime) override;
 
 		protected:
 		glm::vec3 translate;

@@ -8,6 +8,7 @@
 #include "BaseObjects/Camera.h"
 #include "BaseObjects/Cube.h"
 #include "Components/FirstPersonFlyControls.h"
+#include "Constants.h"
 
 namespace Biendeo::GameOff2016::Engine {
 	// The callback method when GLFW errors. This just outputs a message to stderr.
@@ -43,6 +44,10 @@ namespace Biendeo::GameOff2016::Engine {
 			if (arg == "/Q") {
 				verbose = false;
 			}
+		}
+
+		if (verbose) {
+			PrintCompilerInfo();
 		}
 
 		// Then we set up our program.
@@ -98,15 +103,15 @@ namespace Biendeo::GameOff2016::Engine {
 				~Rotate() {}
 
 				void Awake() override {}
-				void LateUpdate(float deltaTime) override {}
+				void LateUpdate(CFloat deltaTime) override {}
 				void OnActive() override {}
 				void OnDestroy() override {}
 				void OnDisable() override {}
 				void Start() override {}
-				void Update(float deltaTime) override {
-					gameObject->Transform().Rotate().x += 60.0f * deltaTime;
-					gameObject->Transform().Rotate().y += 30.0f * deltaTime;
-					gameObject->Transform().Rotate().z += 15.0f * deltaTime;
+				void Update(CFloat deltaTime) override {
+					gameObject->Transform().Rotate().x += 60.0f * static_cast<float>(deltaTime);
+					gameObject->Transform().Rotate().y += 30.0f * static_cast<float>(deltaTime);
+					gameObject->Transform().Rotate().z += 15.0f * static_cast<float>(deltaTime);
 				}
 			};
 
@@ -118,8 +123,8 @@ namespace Biendeo::GameOff2016::Engine {
 		}
 
 		while (!glfwWindowShouldClose(window)) {
-			std::shared_ptr<GameObject>(rootObject)->Update((float)framerate->Delta());
-			std::shared_ptr<GameObject>(rootObject)->LateUpdate((float)framerate->Delta());
+			std::shared_ptr<GameObject>(rootObject)->Update(framerate->Delta());
+			std::shared_ptr<GameObject>(rootObject)->LateUpdate(framerate->Delta());
 			DrawBuffer();
 			framerate->SleepToNextSwapBuffer();
 			glfwSwapBuffers(window);
@@ -251,5 +256,35 @@ namespace Biendeo::GameOff2016::Engine {
 		auto rootObjectPtr = std::shared_ptr<GameObject>(Instantiate(new GameObject(this)));
 		rootObjectPtr->Name("Root");
 		rootObject = std::weak_ptr<GameObject>(rootObjectPtr);
+	}
+
+	void Engine::PrintCompilerInfo() {
+		std::cout << "Compiled on a ";
+	#if defined(CPU_32)
+		std::cout << "32-bit ";
+	#elif defined(CPU_64)
+		std::cout << "64-bit ";
+	#endif
+
+	#if defined(OS_WINDOWS)
+		std::cout << "Windows ";
+	#elif defined(OS_MAC)
+		std::cout << "Mac OS ";
+	#elif defined(OS_LINUX)
+		std::cout << "Linux ";
+	#elif defined(OS_UNIX)
+		std::cout << "Unix ";
+	#endif
+
+		std::cout << "system.\n";
+
+		std::cout << "Floating operations will be using: ";
+		if (sizeof(CFloat) == 4) {
+			std::cout << "floats.\n";
+		} else if (sizeof(CFloat) == 8) {
+			std::cout << "doubles.\n";
+		} else {
+			std::cout << "unknown.\n";
+		}
 	}
 }

@@ -8,6 +8,8 @@
 #include "Component.h"
 #include "Components/Transform.h"
 
+#include "Constants.h"
+
 namespace Biendeo::GameOff2016::Engine {
 	class Engine;
 
@@ -35,9 +37,9 @@ namespace Biendeo::GameOff2016::Engine {
 		std::string Name();
 		std::string Name(std::string newName);
 
-		uint64_t ID();
+		CUint ID();
 		// Do not call this method manually, or the engine will not be able to find the object.
-		uint64_t ID(uint64_t newId);
+		CUint ID(CUint newId);
 
 		std::shared_ptr<GameObject> Parent();
 		std::shared_ptr<GameObject> Parent(std::shared_ptr<GameObject> newParent);
@@ -64,7 +66,7 @@ namespace Biendeo::GameOff2016::Engine {
 		// Gets called before Start when the object is created.
 		void Awake();
 		// Gets called after Update every frame.
-		void LateUpdate(float deltaTime);
+		void LateUpdate(CFloat deltaTime);
 		// Gets called when the object is made active.
 		void OnActive();
 		// Gets called when the object is destroyed.
@@ -74,20 +76,20 @@ namespace Biendeo::GameOff2016::Engine {
 		// Gets called when the object is created.
 		void Start();
 		// Gets called every frame.
-		void Update(float deltaTime);
+		void Update(CFloat deltaTime);
 
 		protected:
 		std::string name;
 		std::vector<std::shared_ptr<Component>> components;
 
 		std::weak_ptr<GameObject> parent;
-		std::map<uint64_t, std::weak_ptr<GameObject>> children;
+		std::map<CUint, std::weak_ptr<GameObject>> children;
 
 		Engine* engine;
 
 		std::weak_ptr<Components::Transform> transform;
 
-		uint64_t id;
+		CUint id;
 
 		bool active;
 

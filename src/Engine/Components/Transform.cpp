@@ -2,9 +2,9 @@
 
 namespace Biendeo::GameOff2016::Engine::Components {
 	Transform::Transform(GameObject* gameObject) : Component(gameObject) {
-		translate = glm::vec3{0.0f, 0.0f, 0.0f};
-		rotate = glm::vec3{0.0f, 0.0f, 0.0f};
-		scale = glm::vec3{1.0f, 1.0f, 1.0f};
+		translate = glm::vec3{0.0, 0.0, 0.0};
+		rotate = glm::vec3{0.0, 0.0, 0.0};
+		scale = glm::vec3{1.0, 1.0, 1.0};
 	}
 
 	Transform::~Transform() {
@@ -27,7 +27,7 @@ namespace Biendeo::GameOff2016::Engine::Components {
 
 	}
 
-	void Transform::LateUpdate(float deltaTime) {
+	void Transform::LateUpdate(CFloat deltaTime) {
 
 	}
 
@@ -47,7 +47,7 @@ namespace Biendeo::GameOff2016::Engine::Components {
 
 	}
 
-	void Transform::Update(float deltaTime) {
+	void Transform::Update(CFloat deltaTime) {
 
 	}
 }

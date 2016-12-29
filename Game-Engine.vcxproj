@@ -39,6 +39,7 @@
     <ClInclude Include="src\Engine\Components\ComCamera.h" />
     <ClInclude Include="src\Engine\Components\FirstPersonFlyControls.h" />
     <ClInclude Include="src\Engine\Components\Transform.h" />
+    <ClInclude Include="src\Engine\Constants.h" />
     <ClInclude Include="src\Engine\Engine.h" />
     <ClInclude Include="src\Engine\Framerate.h" />
     <ClInclude Include="src\Engine\GameObject.h" />

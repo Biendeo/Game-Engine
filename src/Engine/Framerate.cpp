@@ -12,16 +12,16 @@ namespace Biendeo::GameOff2016::Engine {
 	}
 
 	void Framerate::SleepToNextSwapBuffer() {
-		double currentTime = glfwGetTime();
-		auto nanos = static_cast<uint64_t>((nextDraw - currentTime) * 1000000000.0);
+		CFloat currentTime = static_cast<CFloat>(glfwGetTime());
+		auto nanos = static_cast<uint64_t>((nextDraw - currentTime) * static_cast<CFloat>(1000000000.0));
 		std::this_thread::sleep_for(std::chrono::nanoseconds(nanos));
 	}
 
 	void Framerate::UpdateDrawTimes() {
-		double previousDraw = this->lastDraw;
-		this->lastDraw = glfwGetTime();
+		CFloat previousDraw = this->lastDraw;
+		this->lastDraw = static_cast<CFloat>(glfwGetTime());
 		this->delta = this->lastDraw - previousDraw;
-		this->nextDraw = lastDraw + 1.0 / expectedFPS;
+		this->nextDraw = lastDraw + static_cast<CFloat>(1.0) / expectedFPS;
 	}
 
 	uint64_t Framerate::IncrementFrameCount() {
@@ -41,7 +41,7 @@ namespace Biendeo::GameOff2016::Engine {
 		return frameCount;
 	}
 
-	double Framerate::Delta() {
+	CFloat Framerate::Delta() {
 		return delta;
 	}
 }

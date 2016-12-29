@@ -8,42 +8,42 @@ namespace Biendeo::GameOff2016::Engine::Components {
 		FirstPersonFlyControls(GameObject* gameObject);
 		~FirstPersonFlyControls();
 
-		float MouseSensitivityX();
-		float MouseSensitivityX(float mouseSensitivityX);
-		float MouseSensitivityY();
-		float MouseSensitivityY(float mouseSensitivityY);
-		float MovementSpeed();
-		float MovementSpeed(float movementSpeed);
-		float FastSpeed();
-		float FastSpeed(float fastSpeed);
+		CFloat MouseSensitivityX();
+		CFloat MouseSensitivityX(CFloat mouseSensitivityX);
+		CFloat MouseSensitivityY();
+		CFloat MouseSensitivityY(CFloat mouseSensitivityY);
+		CFloat MovementSpeed();
+		CFloat MovementSpeed(CFloat movementSpeed);
+		CFloat FastSpeed();
+		CFloat FastSpeed(CFloat fastSpeed);
 
 		void Awake() override;
-		void LateUpdate(float deltaTime) override;
+		void LateUpdate(CFloat deltaTime) override;
 		void OnActive() override;
 		void OnDestroy() override;
 		void OnDisable() override;
 		void Start() override;
-		void Update(float deltaTime) override;
+		void Update(CFloat deltaTime) override;
 
 		protected:
-		float movementSpeed;
-		float fastSpeed;
-		float mouseSensitivityX;
-		float mouseSensitivityY;
+		CFloat movementSpeed;
+		CFloat fastSpeed;
+		CFloat mouseSensitivityX;
+		CFloat mouseSensitivityY;
 
 		bool noClip;
 
-		void MoveForward(float amount);
-		void MoveBackward(float amount);
-		void MoveForwardNoClip(float amount);
-		void MoveBackwardNoClip(float amount);
-		void StrafeLeft(float amount);
-		void StrafeRight(float amount);
-		void TurnLeft(float amount);
-		void TurnRight(float amount);
-		void LookUp(float amount);
-		void LookDown(float amount);
-		void FlyUp(float amount);
-		void FlyDown(float amount);
+		void MoveForward(CFloat amount);
+		void MoveBackward(CFloat amount);
+		void MoveForwardNoClip(CFloat amount);
+		void MoveBackwardNoClip(CFloat amount);
+		void StrafeLeft(CFloat amount);
+		void StrafeRight(CFloat amount);
+		void TurnLeft(CFloat amount);
+		void TurnRight(CFloat amount);
+		void LookUp(CFloat amount);
+		void LookDown(CFloat amount);
+		void FlyUp(CFloat amount);
+		void FlyDown(CFloat amount);
 	};
 }

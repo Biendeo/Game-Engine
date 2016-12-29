@@ -24,11 +24,11 @@ namespace Biendeo::GameOff2016::Engine::Components {
 		return perspective;
 	}
 
-	float ComCamera::FOV() {
+	CFloat ComCamera::FOV() {
 		return fov;
 	}
 
-	float ComCamera::FOV(float fov) {
+	CFloat ComCamera::FOV(CFloat fov) {
 		this->fov = fov;
 		return fov;
 	}
@@ -37,8 +37,8 @@ namespace Biendeo::GameOff2016::Engine::Components {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
-		float aspectRatio = width * 1.0f / height;
-		float roughNearPlane = tan(FOV() / 2.0f * PI() / 180.0f);
+		CFloat aspectRatio = width * 1.0f / height;
+		CFloat roughNearPlane = static_cast<CFloat>(tan(FOV() / 2.0f * PI() / 180.0f));
 		const float nearPlaneFactor = 0.1f;
 		const float farPlane = 1000.0f;
 
@@ -57,17 +57,24 @@ namespace Biendeo::GameOff2016::Engine::Components {
 		glLoadIdentity();
 
 		// TODO: Use the global transform rather than the local transform.
+	#if defined(CPU_32)
 		glRotatef(-gameObject->Transform().Rotate().x, 1.0f, 0.0f, 0.0f);
 		glRotatef(-gameObject->Transform().Rotate().y, 0.0f, 1.0f, 0.0f);
 		glRotatef(-gameObject->Transform().Rotate().z, 0.0f, 0.0f, 1.0f);
 		glTranslatef(-gameObject->Transform().Translate().x, -gameObject->Transform().Translate().y, -gameObject->Transform().Translate().z);
+	#elif defined(CPU_64)
+		glRotated(-gameObject->Transform().Rotate().x, 1.0, 0.0, 0.0);
+		glRotated(-gameObject->Transform().Rotate().y, 0.0, 1.0, 0.0);
+		glRotated(-gameObject->Transform().Rotate().z, 0.0, 0.0, 1.0);
+		glTranslated(-gameObject->Transform().Translate().x, -gameObject->Transform().Translate().y, -gameObject->Transform().Translate().z);
+	#endif
 	}
 
 	void ComCamera::Awake() {
 
 	}
 
-	void ComCamera::LateUpdate(float deltaTime) {
+	void ComCamera::LateUpdate(CFloat deltaTime) {
 
 	}
 
@@ -87,7 +94,7 @@ namespace Biendeo::GameOff2016::Engine::Components {
 
 	}
 
-	void ComCamera::Update(float deltaTime) {
+	void ComCamera::Update(CFloat deltaTime) {
 		
 	}
 }

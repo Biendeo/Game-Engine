@@ -19,38 +19,38 @@ namespace Biendeo::GameOff2016::Engine::Components {
 
 	}
 
-	float FirstPersonFlyControls::MouseSensitivityX() {
+	CFloat FirstPersonFlyControls::MouseSensitivityX() {
 		return mouseSensitivityX;
 	}
 
-	float FirstPersonFlyControls::MouseSensitivityX(float mouseSensitivityX) {
+	CFloat FirstPersonFlyControls::MouseSensitivityX(CFloat mouseSensitivityX) {
 		this->mouseSensitivityX = mouseSensitivityX;
 		return mouseSensitivityX;
 	}
 
-	float FirstPersonFlyControls::MouseSensitivityY() {
+	CFloat FirstPersonFlyControls::MouseSensitivityY() {
 		return mouseSensitivityY;
 	}
 
-	float FirstPersonFlyControls::MouseSensitivityY(float mouseSensitivityY) {
+	CFloat FirstPersonFlyControls::MouseSensitivityY(CFloat mouseSensitivityY) {
 		this->mouseSensitivityY = mouseSensitivityY;
 		return mouseSensitivityY;
 	}
 
-	float FirstPersonFlyControls::MovementSpeed() {
+	CFloat FirstPersonFlyControls::MovementSpeed() {
 		return movementSpeed;
 	}
 
-	float FirstPersonFlyControls::MovementSpeed(float movementSpeed) {
+	CFloat FirstPersonFlyControls::MovementSpeed(CFloat movementSpeed) {
 		this->movementSpeed = movementSpeed;
 		return movementSpeed;
 	}
 
-	float FirstPersonFlyControls::FastSpeed() {
+	CFloat FirstPersonFlyControls::FastSpeed() {
 		return fastSpeed;
 	}
 
-	float FirstPersonFlyControls::FastSpeed(float fastSpeed) {
+	CFloat FirstPersonFlyControls::FastSpeed(CFloat fastSpeed) {
 		this->fastSpeed = fastSpeed;
 		return fastSpeed;
 	}
@@ -59,7 +59,7 @@ namespace Biendeo::GameOff2016::Engine::Components {
 
 	}
 
-	void FirstPersonFlyControls::LateUpdate(float deltaTime) {
+	void FirstPersonFlyControls::LateUpdate(CFloat deltaTime) {
 
 	}
 
@@ -79,13 +79,13 @@ namespace Biendeo::GameOff2016::Engine::Components {
 
 	}
 
-	void FirstPersonFlyControls::Update(float deltaTime) {
-		float speed = movementSpeed;
+	void FirstPersonFlyControls::Update(CFloat deltaTime) {
+		CFloat speed = movementSpeed;
 		if (Input::GetKey(GLFW_KEY_LEFT_SHIFT)) {
 			speed = fastSpeed;
 		}
 
-		float speedRate = speed / fastSpeed;
+		CFloat speedRate = speed / fastSpeed;
 
 		speed *= deltaTime;
 
@@ -125,48 +125,48 @@ namespace Biendeo::GameOff2016::Engine::Components {
 		TurnRight(Input::GetMouseDeltaX() * mouseSensitivityX * deltaTime);
 	}
 
-	void FirstPersonFlyControls::MoveForward(float amount) {
-		float mainDirection = (float)cos(gameObject->Transform().Rotate().y * PI() / 180.0f);
-		float sideDirection = (float)sin(gameObject->Transform().Rotate().y * PI() / 180.0f);
-		gameObject->Transform().Translate() += glm::vec3(-sideDirection, 0.0f, -mainDirection) * amount;
+	void FirstPersonFlyControls::MoveForward(CFloat amount) {
+		CFloat mainDirection = static_cast<CFloat>(cos(gameObject->Transform().Rotate().y * PI() / 180.0f));
+		CFloat sideDirection = static_cast<CFloat>(sin(gameObject->Transform().Rotate().y * PI() / 180.0f));
+		gameObject->Transform().Translate() += glm::vec3(-sideDirection, 0.0, -mainDirection) * static_cast<float>(amount);
 	}
 
-	void FirstPersonFlyControls::MoveBackward(float amount) {
+	void FirstPersonFlyControls::MoveBackward(CFloat amount) {
 		MoveForward(-amount);
 	}
 
-	void FirstPersonFlyControls::MoveForwardNoClip(float amount) {
-		float mainDirection = (float)cos(gameObject->Transform().Rotate().y * PI() / 180.0f);
-		float sideDirection = (float)sin(gameObject->Transform().Rotate().y * PI() / 180.0f);
-		float flyDirection = (float)sin(gameObject->Transform().Rotate().x * PI() / 180.0f);
-		gameObject->Transform().Translate() += glm::vec3(-sideDirection, 0.0, -mainDirection) * (amount * (1 - abs(flyDirection)));
-		gameObject->Transform().Translate().y += flyDirection * amount;
+	void FirstPersonFlyControls::MoveForwardNoClip(CFloat amount) {
+		CFloat mainDirection = static_cast<CFloat>(cos(gameObject->Transform().Rotate().y * PI() / 180.0f));
+		CFloat sideDirection = static_cast<CFloat>(sin(gameObject->Transform().Rotate().y * PI() / 180.0f));
+		CFloat flyDirection = static_cast<CFloat>(sin(gameObject->Transform().Rotate().x * PI() / 180.0f));
+		gameObject->Transform().Translate() += glm::vec3(-sideDirection, 0.0, -mainDirection) * static_cast<float>(amount * (1 - abs(flyDirection)));
+		gameObject->Transform().Translate().y += static_cast<float>(flyDirection) * static_cast<float>(amount);
 	}
 
-	void FirstPersonFlyControls::MoveBackwardNoClip(float amount) {
+	void FirstPersonFlyControls::MoveBackwardNoClip(CFloat amount) {
 		MoveForwardNoClip(-amount);
 	}
 
-	void FirstPersonFlyControls::StrafeLeft(float amount) {
-		float mainDirection = (float)cos(gameObject->Transform().Rotate().y * PI() / 180.0f);
-		float sideDirection = (float)sin(gameObject->Transform().Rotate().y * PI() / 180.0f);
-		gameObject->Transform().Translate() += glm::vec3(-mainDirection, 0.0f, sideDirection) * amount;
+	void FirstPersonFlyControls::StrafeLeft(CFloat amount) {
+		CFloat mainDirection = static_cast<CFloat>(cos(gameObject->Transform().Rotate().y * PI() / 180.0f));
+		CFloat sideDirection = static_cast<CFloat>(sin(gameObject->Transform().Rotate().y * PI() / 180.0f));
+		gameObject->Transform().Translate() += glm::vec3(-mainDirection, 0.0, sideDirection) * static_cast<float>(amount);
 	}
 
-	void FirstPersonFlyControls::StrafeRight(float amount) {
+	void FirstPersonFlyControls::StrafeRight(CFloat amount) {
 		StrafeLeft(-amount);
 	}
 
-	void FirstPersonFlyControls::TurnLeft(float amount) {
-		gameObject->Transform().Rotate().y += amount;
+	void FirstPersonFlyControls::TurnLeft(CFloat amount) {
+		gameObject->Transform().Rotate().y += static_cast<float>(amount);
 	}
 
-	void FirstPersonFlyControls::TurnRight(float amount) {
+	void FirstPersonFlyControls::TurnRight(CFloat amount) {
 		TurnLeft(-amount);
 	}
 
-	void FirstPersonFlyControls::LookUp(float amount) {
-		gameObject->Transform().Rotate().x += amount;
+	void FirstPersonFlyControls::LookUp(CFloat amount) {
+		gameObject->Transform().Rotate().x += static_cast<float>(amount);
 		if (gameObject->Transform().Rotate().x > 90.0f) {
 			gameObject->Transform().Rotate().x = 90.0f;
 		} else if (gameObject->Transform().Rotate().x < -90.0f) {
@@ -174,15 +174,15 @@ namespace Biendeo::GameOff2016::Engine::Components {
 		}
 	}
 
-	void FirstPersonFlyControls::LookDown(float amount) {
+	void FirstPersonFlyControls::LookDown(CFloat amount) {
 		LookUp(-amount);
 	}
 
-	void FirstPersonFlyControls::FlyUp(float amount) {
-		gameObject->Transform().Translate().y += amount;
+	void FirstPersonFlyControls::FlyUp(CFloat amount) {
+		gameObject->Transform().Translate().y += static_cast<float>(amount);
 	}
 
-	void FirstPersonFlyControls::FlyDown(float amount) {
+	void FirstPersonFlyControls::FlyDown(CFloat amount) {
 		FlyUp(-amount);
 	}
 }

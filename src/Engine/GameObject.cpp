@@ -54,11 +54,11 @@ namespace Biendeo::GameOff2016::Engine {
 		return name;
 	}
 
-	uint64_t GameObject::ID() {
+	CUint GameObject::ID() {
 		return id;
 	}
 
-	uint64_t GameObject::ID(uint64_t newId) {
+	CUint GameObject::ID(CUint newId) {
 		this->id = newId;
 		return id;
 	}
@@ -84,15 +84,15 @@ namespace Biendeo::GameOff2016::Engine {
 		this->parent = newParent;
 
 		if (newParent != nullptr) {
-			newParent->children.insert(std::pair<uint64_t, std::weak_ptr<GameObject>>(ID(), std::weak_ptr<GameObject>(GetPointer())));
+			newParent->children.insert(std::pair<CUint, std::weak_ptr<GameObject>>(ID(), std::weak_ptr<GameObject>(GetPointer())));
 		}
 
 		return newParent;
 	}
 
-	std::map<uint64_t, std::shared_ptr<GameObject>> GameObject::Children() {
-		typedef std::map<uint64_t, std::weak_ptr<GameObject>>::iterator iterator;
-		std::map<uint64_t, std::shared_ptr<GameObject>> childrenMap;
+	std::map<CUint, std::shared_ptr<GameObject>> GameObject::Children() {
+		typedef std::map<CUint, std::weak_ptr<GameObject>>::iterator iterator;
+		std::map<CUint, std::shared_ptr<GameObject>> childrenMap;
 		for (iterator it = children.begin(); it != children.end(); it++) {
 			auto childPtr = std::shared_ptr<GameObject>(it->second);
 			childrenMap.insert(std::make_pair(childPtr->ID(), childPtr));
@@ -120,11 +120,19 @@ namespace Biendeo::GameOff2016::Engine {
 	void GameObject::Draw() {
 		glPushMatrix();
 
+	#if defined(CPU_32)
 		glTranslatef(Transform().Translate().x, Transform().Translate().y, Transform().Translate().z);
 		glRotatef(Transform().Rotate().z, 0.0f, 0.0f, 1.0f);
 		glRotatef(Transform().Rotate().y, 0.0f, 1.0f, 0.0f);
 		glRotatef(Transform().Rotate().x, 1.0f, 0.0f, 0.0f);
 		glScalef(Transform().Scale().x, Transform().Scale().y, Transform().Scale().z);
+	#elif defined(CPU_64)
+		glTranslated(Transform().Translate().x, Transform().Translate().y, Transform().Translate().z);
+		glRotated(Transform().Rotate().z, 0.0, 0.0, 1.0);
+		glRotated(Transform().Rotate().y, 0.0, 1.0, 0.0);
+		glRotated(Transform().Rotate().x, 1.0, 0.0, 0.0);
+		glScaled(Transform().Scale().x, Transform().Scale().y, Transform().Scale().z);
+	#endif
 
 		DrawSelf();
 		for (auto& child : children) {
@@ -163,7 +171,7 @@ namespace Biendeo::GameOff2016::Engine {
 		this->initialized = true;
 	}
 
-	void GameObject::LateUpdate(float deltaTime) {
+	void GameObject::LateUpdate(CFloat deltaTime) {
 		for (auto& c : components) {
 			std::shared_ptr<Component>(c)->LateUpdate(deltaTime);
 		}
@@ -213,7 +221,7 @@ namespace Biendeo::GameOff2016::Engine {
 		}
 	}
 
-	void GameObject::Update(float deltaTime) {
+	void GameObject::Update(CFloat deltaTime) {
 		for (auto& c : components) {
 			std::shared_ptr<Component>(c)->Update(deltaTime);
 		}

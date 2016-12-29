@@ -69,5 +69,8 @@ namespace Biendeo::GameOff2016::Engine {
 
 		// Generates a root object. The previous one should be destroyed beforehand.
 		void CreateRootObject();
+
+		// Prints information about the compilation of this program to the console.
+		void PrintCompilerInfo();
 	};
 }

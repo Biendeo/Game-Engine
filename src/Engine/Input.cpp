@@ -142,8 +142,8 @@ namespace Biendeo::GameOff2016::Engine::Input {
 		int width, height;
 		glfwGetWindowSize(window, &width, &height);
 
-		futureMouseX = xPos;
-		futureMouseY = yPos;
+		futureMouseX = static_cast<int>(xPos);
+		futureMouseY = static_cast<int>(yPos);
 	}
 
 	void GLFWMouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {

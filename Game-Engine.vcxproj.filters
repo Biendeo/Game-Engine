@@ -67,6 +67,7 @@
     <ClInclude Include="src\Engine\Components\Transform.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Constants.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
