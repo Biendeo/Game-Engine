@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Engine\BaseObjects\Camera.cpp">
+      <Filter>Engine\BaseObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\BaseObjects\Cube.cpp">
+      <Filter>Engine\BaseObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Components\ComCamera.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Component.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Engine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Framerate.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\GameObject.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Input.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Components\FirstPersonFlyControls.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Components\Transform.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Engine\BaseObjects\Camera.h">
+      <Filter>Engine\BaseObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\BaseObjects\Cube.h">
+      <Filter>Engine\BaseObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Components\ComCamera.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\CommonMath.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Component.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Framerate.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\GameObject.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Input.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Components\FirstPersonFlyControls.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Components\Transform.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{efd03acf-f5e3-4a7b-9f8a-33224c6c80c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\BaseObjects">
+      <UniqueIdentifier>{557cc838-4560-495d-9d50-a4e1c4ab2ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components">
+      <UniqueIdentifier>{3e119dfc-4486-40d1-b83e-66aa41cba7ec}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
