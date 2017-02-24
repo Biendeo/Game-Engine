@@ -44,7 +44,7 @@ namespace Biendeo::GameOff2016::Engine {
 		std::shared_ptr<GameObject> Parent();
 		std::shared_ptr<GameObject> Parent(std::shared_ptr<GameObject> newParent);
 
-		std::map<uint64_t, std::shared_ptr<GameObject>> Children();
+		std::map<CUint, std::shared_ptr<GameObject>> Children();
 
 		std::shared_ptr<GameObject> GetPointer();
 		

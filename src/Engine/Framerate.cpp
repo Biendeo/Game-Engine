@@ -9,6 +9,7 @@ namespace Biendeo::GameOff2016::Engine {
 		this->expectedFPS = expectedFPS;
 		this->frameCount = 0ull;
 		UpdateDrawTimes();
+		this->delta = static_cast<CFloat>(0.0f);
 	}
 
 	void Framerate::SleepToNextSwapBuffer() {

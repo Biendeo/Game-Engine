@@ -247,8 +247,8 @@ namespace Biendeo::GameOff2016::Engine {
 		return std::shared_ptr<GameObject>(rootObject);
 	}
 
-	uint64_t Engine::NewID() {
-		static uint64_t id = 1;
+	CUint Engine::NewID() {
+		static CUint id = 1;
 		return id++;
 	}
 

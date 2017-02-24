@@ -65,7 +65,7 @@ namespace Biendeo::GameOff2016::Engine {
 		std::shared_ptr<GameObject> Instantiate(GameObject* gameObject);
 
 		// Gets a unique new ID for a new GameObject. This will not conflict with any existing IDs.
-		uint64_t NewID();
+		CUint NewID();
 
 		// Generates a root object. The previous one should be destroyed beforehand.
 		void CreateRootObject();

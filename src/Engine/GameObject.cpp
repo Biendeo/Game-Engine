@@ -25,7 +25,7 @@ namespace Biendeo::GameOff2016::Engine {
 
 	void GameObject::Destroy() {
 		// TODO: Figure out what needs to be done first.
-		typedef std::map<uint64_t, std::weak_ptr<GameObject>>::iterator iterator;
+		typedef std::map<CUint, std::weak_ptr<GameObject>>::iterator iterator;
 
 		for (iterator it = children.begin(); it != children.end(); it++) {
 			//auto s = it->second;
