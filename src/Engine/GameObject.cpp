@@ -41,8 +41,14 @@ namespace Biendeo::GameOff2016::Engine {
 	}
 
 	Components::Transform GameObject::GlobalTransform() {
-		// TODO
-		return Components::Transform(this);
+		std::shared_ptr<GameObject> parent = parent;
+		if (parent == engine->GetRootObjectPointer()) {
+			return Transform();
+		} else {
+			// TODO: Use the right formula here.
+			Components::Transform parentTransform = parent->GlobalTransform();
+			return parentTransform;
+		}
 	}
 
 	std::string GameObject::Name() {

@@ -14,6 +14,11 @@ namespace Biendeo::GameOff2016::Engine::Components {
 		glm::vec3& Rotate();
 		glm::vec3& Scale();
 
+		glm::mat4 Matrix();
+		glm::mat4 TranslateMatrix();
+		glm::mat4 RotateMatrix();
+		glm::mat4 ScaleMatrix();
+
 		void Awake() override;
 		void LateUpdate(CFloat deltaTime) override;
 		void OnActive() override;
