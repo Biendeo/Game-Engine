@@ -32,10 +32,18 @@ inline CFloat Cos(CFloat degrees) {
 #endif
 }
 
+inline CFloat FMod(CFloat x, CFloat y) {
+#ifndef CPU_64
+	return fmodf(x, y);
+#else
+	return fmod(x, y);
+#endif
+}
+
 inline CFloat ClampAngle(CFloat angle) {
 #ifndef CPU_64
-	return fmodf(angle + 180.0f, 360.0f) - 180.0f;
+	return FMod(angle + 180.0f, 360.0f) - 180.0f;
 #else
-	return fmod(angle + 180.0, 360.0) - 180.0;
+	return FMod(angle + 180.0, 360.0) - 180.0;
 #endif
 }
