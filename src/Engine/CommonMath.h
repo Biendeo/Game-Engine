@@ -34,9 +34,9 @@ inline CFloat Cos(CFloat degrees) {
 
 inline CFloat FMod(CFloat x, CFloat y) {
 #ifndef CPU_64
-	return fmodf(x, y);
+	return x - y * std::floorf(x / y);
 #else
-	return fmod(x, y);
+	return x - y * std::floor(x / y);
 #endif
 }
 
